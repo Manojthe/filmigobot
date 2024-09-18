@@ -132,8 +132,11 @@ func GetIMDbTitle(id string) (gotgbot.InputMediaPhoto, [][]gotgbot.InlineKeyboar
 	}
 
 	if title.Trailer.URL != "" {
-		buttons = append(buttons, []gotgbot.InlineKeyboardButton{{Text: fmt.Sprintf("🎞 IMDb Trailer (%s)", parseIMDbTrailerDuration(title.Trailer.Duration)), Url: title.Trailer.URL}})
-	}
+    buttons = append(buttons, []gotgbot.InlineKeyboardButton{
+        {Text: fmt.Sprintf("🎞 IMDb Trailer (%s)", parseIMDbTrailerDuration(title.Trailer.Duration)), Url: title.Trailer.URL},
+        {Text: "Download Movie", Url: "http://t.me/Downloader_TGBot"},
+    })
+}
 
 	photo = gotgbot.InputMediaPhoto{
 		Media:      gotgbot.InputFileByURL(title.PosterURL),
